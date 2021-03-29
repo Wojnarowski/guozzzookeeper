@@ -36,10 +36,13 @@ public class DefaultWatch implements Watcher {
 
     CountDownLatch cc ;
 
-    public void setCc(CountDownLatch init) {
-        this.cc=cc;
+    public CountDownLatch getCc() {
+        return cc;
     }
 
+    public void setCc(CountDownLatch cc) {
+        this.cc = cc;
+    }
 
     public void process(WatchedEvent event) {
 

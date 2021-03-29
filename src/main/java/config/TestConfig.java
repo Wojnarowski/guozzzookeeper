@@ -7,6 +7,7 @@ import org.apache.zookeeper.ZooKeeper;
 import org.apache.zookeeper.data.Stat;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 
 /**
  * @ClassName TestConfig
@@ -53,14 +54,25 @@ public class TestConfig {
         }
     }
 
+    @Test
     public void getConf(){
         WatchCallBack watchCallBack =new WatchCallBack();
         watchCallBack.setZk(zk);
 
         MyConf myConf = new MyConf();
         watchCallBack.setMyConf(myConf);
-        zk.exists("/AppConf",watchCallBack,watchCallBack, "ABC");
 
+
+        watchCallBack.await();
+
+        while (true){
+            System.out.println(myConf.getConf());
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
 
