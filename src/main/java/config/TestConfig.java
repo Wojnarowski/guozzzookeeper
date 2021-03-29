@@ -66,7 +66,13 @@ public class TestConfig {
         watchCallBack.await();
 
         while (true){
-            System.out.println(myConf.getConf());
+            if(myConf.getConf().equals("")){
+                System.out.println("conf  diu  le  ...");
+                watchCallBack.await();
+            }
+            else{
+                System.out.println(myConf.getConf());
+            }
             try {
                 Thread.sleep(2000);
             } catch (InterruptedException e) {

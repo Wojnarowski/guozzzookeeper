@@ -95,8 +95,9 @@ public class WatchCallBack implements Watcher, AsyncCallback.StatCallback, Async
                 zk.getData("/AppConf",this,this,"sadf");
                 break;
             case NodeDeleted:
-                //
-
+                //容忍性
+                myConf.setConf("");
+                cc=new CountDownLatch(1);
                 break;
             case NodeDataChanged:
                 zk.getData("/AppConf",this,this,"sadf");
