@@ -54,6 +54,38 @@ public class TestLock {
     @Test
     public void lock(){
 
+        for(int i=0;i<10;i++){
+            new Thread(){
+                @Override
+                public void run() {
+                    //每一个线程
+                    WatchCallBack watchCallBack = new WatchCallBack();
+                    watchCallBack.setZk(zk);
+
+                    String threadName = Thread.currentThread().getName();
+                    watchCallBack.setThreadName(threadName);
+                    //抢锁
+                    watchCallBack.tryLock();
+
+                    //干活儿
+                    System.out.println(threadName+"  working ....");
+//                    try {
+//                        Thread.sleep(1000);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+
+                    //释放锁
+                    watchCallBack.unLock();
+
+                }
+            }.start();
+        }
+
+        while (true){
+
+        }
+
     }
 }
 

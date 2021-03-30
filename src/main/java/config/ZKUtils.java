@@ -44,7 +44,7 @@ public class ZKUtils {
 
     public static ZooKeeper getZK(){
         try {
-            zk = new ZooKeeper(address,1000,watch);
+            zk = new ZooKeeper(address,10000,watch);
             watch.setCc(init);
             init.await();
         } catch (IOException e) {
